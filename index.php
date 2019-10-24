@@ -23,7 +23,7 @@ echo '
                   <p class="card-text"><div class="text-justify">'.$description.'</div></p>
             </div>
                 <div class="card-footer">
-                  <small class="text-muted">'.stars_result($stars).'</small>
+                  <small class="text-muted">'.trim(stars_result($stars)).'</small>
                 </div>
     </div>
 </div>';
