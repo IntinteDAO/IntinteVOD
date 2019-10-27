@@ -8,10 +8,15 @@ $movies = array_values(array_diff(scandir("movies"), array('.', '..')));
 
 for($i=0; $i<=(count($movies)-1); $i++) {
 
-if (file_exists("movies/$movies[$i]/description.txt")) { $description = file("movies/$movies[$i]/description.txt")[0]; } else { $description=""; }
-if (file_exists("movies/$movies[$i]/thumb.png")) { $thumb = "movies/$movies[$i]/thumb.png"; } else { $thumb="http://placehold.it/700x400"; }
-if (file_exists("movies/$movies[$i]/stars.txt")) { $stars = trim(file("movies/$movies[$i]/stars.txt")[0]); } else { $stars=0; }
 
+if (file_exists("movies/$movies[$i]/thumb.png")) { $thumb = "movies/$movies[$i]/thumb.png"; } else { $thumb="http://placehold.it/700x400"; }
+if (file_exists("movies/$movies[$i]/info.json")) { $json = json_decode(file("movies/$movies[$i]/info.json")[0], TRUE);
+$description = $json["description"];
+$stars = $json["rating"];
+$hidden = $json["hidden"];
+} else { $description=""; $stars=0; $hidden=0;}
+
+if($hidden==0) {
 echo '
 <div class="col-lg-4">
     <div class="card h-100">
@@ -26,7 +31,8 @@ echo '
                   <small class="text-muted">'.trim(stars_result($stars)).'</small>
                 </div>
     </div>
-</div>';
+</div>'; }
+
 }
 
 include("footer.php");
