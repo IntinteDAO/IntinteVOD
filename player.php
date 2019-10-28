@@ -16,12 +16,12 @@ for($i=0; $i<=(count($json["genre"])-1); $i++) {
 $genre = $genre." ".trim($genres[$json["genre"][$i]]);
 }
 
-echo '<video autoplay controls crossorigin playsinline poster="movies/'.$_GET['movie'].'/thumb.png" id="player">';
+echo '<div class="col-12"><video autoplay controls crossorigin playsinline poster="movies/'.$_GET['movie'].'/thumb.png" id="player">';
 
 for($i=0; $i<=(count($resolutions)-1); $i++) {
     echo add_source($_GET['movie'], trim($resolutions[$i])); }
 
-echo '</div>';
+echo '</div></div>';
 
 echo '<div class="row"><div class="col-12"><div class="card">
   <div class="card-header">
