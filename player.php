@@ -3,6 +3,7 @@ include("header.php");
 include("navbar.php");
 include("vendor/TheWorld/add_source.php");
 include("vendor/TheWorld/license.php");
+include("vendor/TheWorld/genres.php");
 
 if(!empty($_GET['movie'])) {
 $resolutions = file("vendor/TheWorld/supported_resolutions.txt");
@@ -12,7 +13,7 @@ $json = json_decode(file("movies/".$_GET['movie']."/info.json")[0], TRUE);
 $genre = "";
 
 for($i=0; $i<=(count($json["genre"])-1); $i++) {
-$genre = $genre." ".trim($json["genre"][$i]);
+$genre = $genre." ".trim($genres[$json["genre"][$i]]);
 }
 
 echo '<video autoplay controls crossorigin playsinline poster="movies/'.$_GET['movie'].'/thumb.png" id="player">';
