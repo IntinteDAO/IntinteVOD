@@ -20,7 +20,7 @@ $hidden = $json["hidden"];
 
 if($hidden==0) {
 echo '
-<div class="col-lg-4">
+<div class="col-lg-4 showmovie">
     <div class="card h-100">
         <a href="player.php?movie='.$movies[$i].'"><img class="card-img-top" src="'.$thumb.'" alt=""></a>
             <div class="card-body">
