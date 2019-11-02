@@ -2,6 +2,7 @@
 include("header.php");
 include("navbar.php");
 include("vendor/TheWorld/add_source.php");
+include("vendor/TheWorld/add_subtitles.php");
 include("vendor/TheWorld/license.php");
 include("vendor/TheWorld/genres.php");
 
@@ -20,6 +21,18 @@ echo '<div class="col-12"><video autoplay controls crossorigin playsinline poste
 
 for($i=0; $i<=(count($resolutions)-1); $i++) {
     echo add_source($_GET['movie'], trim($resolutions[$i])); }
+
+if(file_exists("movies/".$_GET['movie']."/subtitles")) {
+$subs = array_values(array_diff(scandir('movies/'.$_GET['movie'].'/subtitles'), array('.', '..')));
+
+for($i=0; $i<=(count($subs)-1); $i++) {
+    $lang = trim(str_replace(".srt", "", $subs[$i]));
+    echo add_subtitles($_GET['movie'], $subs[$i], $lang);
+}
+
+
+}
+
 
 echo '</div></div>';
 
