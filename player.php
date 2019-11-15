@@ -26,7 +26,7 @@ if(file_exists("movies/".$_GET['movie']."/subtitles")) {
 $subs = array_values(array_diff(scandir('movies/'.$_GET['movie'].'/subtitles'), array('.', '..')));
 
 for($i=0; $i<=(count($subs)-1); $i++) {
-    $lang = trim(str_replace(".srt", "", $subs[$i]));
+    $lang = trim(str_replace("vtt", "", $subs[$i]));
     echo add_subtitles($_GET['movie'], $subs[$i], $lang);
 }
 
