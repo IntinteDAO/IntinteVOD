@@ -17,8 +17,11 @@ for($i=0; $i<=(count($json["genre"])-1); $i++) {
 $genre = $genre." ".trim($genres[$json["genre"][$i]]);
 }
 
-echo '<div class="col-12"><video autoplay controls crossorigin playsinline poster="movies/'.$_GET['movie'].'/thumb.png" id="player">';
+echo '<div class="col-12">';
 
+if(empty($json["link"])) {
+
+echo '<video autoplay controls crossorigin playsinline poster="movies/'.$_GET['movie'].'/thumb.png" id="player">';
 for($i=0; $i<=(count($resolutions)-1); $i++) {
     echo add_source($_GET['movie'], trim($resolutions[$i])); }
 
@@ -30,12 +33,15 @@ for($i=0; $i<=(count($subs)-1); $i++) {
     echo add_subtitles($_GET['movie'], $subs[$i], $lang);
 }
 
-
 }
 
+} else {
+echo '<div class="embed-responsive embed-responsive-16by9">';
+echo '<iframe class="embed-responsive-item" sandbox="allow-same-origin allow-scripts" src="https://tube.midov.pl/videos/embed/'.$json["link"].'" frameborder="0" allowfullscreen></iframe>';
+echo '</div><br>';
+}
 
 echo '</div></div>';
-
 echo '<div class="row"><div class="col-12"><div class="card">
   <div class="card-header">
     '.$json["title"].'
